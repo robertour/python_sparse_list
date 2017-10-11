@@ -28,7 +28,7 @@ class SparseList(object):
     stores the data in a dictionary to conserve memory.
     '''
 
-    def __init__(self, arg, default_value=None):
+    def __init__(self, arg, default_value='dummy'):
         self.default = default_value
         self.elements = {}
         if isinstance(arg, int):
@@ -58,7 +58,7 @@ class SparseList(object):
             return [self[i] for i in xrange(*s)]
         except AttributeError:
             i = slice(index).indices(self.size)[1]
-            return self.elements.get(i, self.default)
+            return self.elements.get(i, self.default + '_' + str(index))
 
     def __setslice__(self, start, stop, vals):
         '''
